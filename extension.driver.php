@@ -3,14 +3,16 @@
 	Class extension_numberfield extends Extension {
 	
 		public function about() {
-			return array('name' => 'Field: Number',
-						 'version' => '1.4.1',
-						 'release-date' => '2011-03-11',
-						 'author' => array(
-						 	'name' => 'Symphony Team',
-							'website' => 'http://www.symphony-cms.com',
-							'email' => 'team@symphony-cms.com')
-				 		);
+			return array(
+				'name' => 'Field: Number',
+				'version' => '1.4.1',
+				'release-date' => '2011-03-11',
+				'author' => array(
+				 	'name' => 'Symphony Team',
+					'website' => 'http://www.symphony-cms.com',
+					'email' => 'team@symphony-cms.com'
+				)
+			);
 		}
 		
 		public function uninstall() {

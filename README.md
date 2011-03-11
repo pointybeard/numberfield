@@ -5,6 +5,9 @@
 - Release Date: 11th May 2011
 - Requirements: Symphony 2
 
+## Overview
+
+Input field that provides built-in number validation and numeric sorting.
 
 ## Installation
 
