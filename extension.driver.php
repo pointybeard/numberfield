@@ -1,8 +1,8 @@
 <?php
 
-	Class extension_numberfield extends Extension{
+	Class extension_numberfield extends Extension {
 	
-		public function about(){
+		public function about() {
 			return array('name' => 'Field: Number',
 						 'version' => '1.4.1',
 						 'release-date' => '2011-03-11',
@@ -13,12 +13,12 @@
 				 		);
 		}
 		
-		public function uninstall(){
+		public function uninstall() {
 			Symphony::Database()->query("DROP TABLE `tbl_fields_number`");
 		}
 
 
-		public function install(){
+		public function install() {
 
 			return Symphony::Database()->query("CREATE TABLE `tbl_fields_number` (
 			  `id` int(11) unsigned NOT NULL auto_increment,
@@ -30,5 +30,3 @@
 		}
 			
 	}
-
-?>
