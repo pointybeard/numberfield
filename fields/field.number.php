@@ -191,8 +191,6 @@
 				
 				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
 				$where .= " AND $expression ";
-                
-                die($where);
 				
 			}			
 			
