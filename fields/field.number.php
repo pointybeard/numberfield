@@ -163,4 +163,35 @@
 			elseif(preg_match('/^(-?(?:\d+(?:\.\d+)?|\.\d+)) to (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)){
     			
 				
-	
+				var_dump($match);
+				die("DEGUG: Regexp match");
+				
+				$field_id = $this->get('id');
+				
+				$expression = "";
+				
+				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
+				$where .= " AND $expression ";
+				
+			}elseif(preg_match('/^(equal to or )?(less|greater) than (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)){
+				
+				
+				var_dump($match);
+				die("DEGUG: Regexp match");
+				
+				$field_id = $this->get('id');
+				
+				$expression = "";
+				
+				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
+				$where .= " AND $expression ";
+				
+			}			
+			
+			else parent::buildDSRetrivalSQL($data, $joins, $where, $andOperation);
+			
+			return true;
+			
+		}
+				
+	}
