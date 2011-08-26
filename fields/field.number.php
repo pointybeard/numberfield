@@ -169,10 +169,6 @@
 				
 			}elseif(preg_match('/^(equal to or )?(less|greater) than (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)){
 				
-				
-				var_dump($match);
-				die("DEGUG: Regexp match");
-				
 				$field_id = $this->get('id');
                 
                 $expression = "{$field_id} ";
