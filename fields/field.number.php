@@ -174,8 +174,24 @@
 				die("DEGUG: Regexp match");
 				
 				$field_id = $this->get('id');
+                
+                $expression = "{$field_id} ";
 				
-				$expression = "";
+                switch($match[2]) {
+                    case 'less':
+                        $expression .= '<';
+                        break;
+                    
+                    case 'greater':
+                        $expression .= '<';
+                        break;
+                }
+                
+                if($match[1]){
+                    $expression .= '=';
+                }
+                
+				$expression .= " {$match[3]} ";
 				
 				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
 				$where .= " AND $expression ";
