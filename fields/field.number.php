@@ -90,27 +90,6 @@
 				$wrapper->appendChild($label);
 			}
 		}
-
-		public function displayDatasourceFilterPanel(&$wrapper, $data=NULL, $errors=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL){
-			
-			$wrapper->appendChild(
-				new XMLElement(
-					'h4',
-					$this->get('label') . ' <i>' . $this->Name() . '</i>'
-				)
-			);
-			$label = Widget::Label('Value');
-			$label->appendChild(
-				Widget::Input(
-					'fields[filter]' . ($fieldnamePrefix ? '['.$fieldnamePrefix.']' : '') . '['.$this->get('id') . ']' . ($fieldnamePostfix ? '[' . $fieldnamePostfix . ']' : ''),
-					($data ? General::sanitize($data) : NULL)
-				)
-			);	
-			$wrapper->appendChild($label);
-			
-			$wrapper->appendChild(new XMLElement('p', 'To filter by ranges, add <code>mysql:</code> to the beginning of the filter input. Use <code>value</code> for field name. E.G. <code>mysql: value &gt;= 1.01 AND value &lt;= {$price}</code>', array('class' => 'help')));
-			
-		}
 		
 		public function checkPostFieldData($data, &$message, $entry_id=NULL) {
 			$message = NULL;
