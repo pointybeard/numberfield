@@ -158,7 +158,7 @@
                         break;
                     
                     case 'greater':
-                        $expression .= '<';
+                        $expression .= '>';
                         break;
                 }
                 
