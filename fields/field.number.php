@@ -171,7 +171,7 @@
 				
 				$field_id = $this->get('id');
                 
-                $expression = " AND `t$field_id`.`value` ";
+                $expression = " `t$field_id`.`value` ";
 				
                 switch($match[2]) {
                     case 'less':
