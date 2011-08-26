@@ -160,12 +160,7 @@
 				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
 				$where .= " AND $expression ";
 				
-			}			
-			
-			else parent::buildDSRetrivalSQL($data, $joins, $where, $andOperation);
-			
-			return true;
-			
-		}
+			elseif(preg_match('/^(-?(?:\d+(?:\.\d+)?|\.\d+)) to (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)){
+    			
 				
-	}
+	
