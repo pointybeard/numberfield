@@ -15,7 +15,7 @@ Input field that provides built-in number validation and numeric sorting.
 2. Enable it by selecting the "Field: Number", choose Enable from the with-selected menu, then click Apply.
 3. You can now add the "Number" field to your sections.
 
-## Filtering
+## Datasource Filtering
 
 The number field provides two additional datasource filtering methods:
 
