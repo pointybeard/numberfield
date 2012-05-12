@@ -2,8 +2,8 @@
 
 	Class fieldNumber extends Field {
 
-		public function __construct(&$parent) {
-			parent::__construct($parent);
+		public function __construct() {
+			parent::__construct();
 			$this->_name = __('Number');
 			$this->_required = true;
 			$this->set('required', 'no');
@@ -50,7 +50,7 @@
 		Settings:
 	-------------------------------------------------------------------------*/
 
-		public function displaySettingsPanel(&$wrapper, $errors=NULL) {
+		public function displaySettingsPanel(XMLElement &$wrapper, $errors = null) {
 			parent::displaySettingsPanel($wrapper, $errors);
 
 			$div = new XMLElement('div', NULL, array('class' => 'compact'));
@@ -63,7 +63,7 @@
 		Input:
 	-------------------------------------------------------------------------*/
 
-		public function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL){
+		public function displayPublishPanel(XMLElement &$wrapper, $data = null, $flagWithError = null, $fieldnamePrefix = null, $fieldnamePostfix = null, $entry_id = null){
 
 			$value = $data['value'];
 			$label = Widget::Label($this->get('label'));
@@ -78,14 +78,14 @@
 			);
 
 			if($flagWithError != NULL) {
-				$wrapper->appendChild(Widget::wrapFormElementWithError($label, $flagWithError));
+				$wrapper->appendChild(Widget::Error($label, $flagWithError));
 			}
 			else {
 				$wrapper->appendChild($label);
 			}
 		}
 
-		public function checkPostFieldData($data, &$message, $entry_id=NULL) {
+		public function checkPostFieldData($data, &$message, $entry_id = null) {
 			$message = NULL;
 
 			if($this->get('required') == 'yes' && strlen($data) == 0) {
@@ -101,7 +101,7 @@
 			return self::__OK__;
 		}
 		
-		public function processRawFieldData($data, &$status, $simulate = false, $entry_id = null) {
+		public function processRawFieldData($data, &$status, &$message=null, $simulate = false, $entry_id = null) {
 			$status = self::__OK__;
 
 			if (strlen(trim($data)) == 0) return array();
@@ -117,7 +117,7 @@
 		Filtering:
 	-------------------------------------------------------------------------*/
 
-		public function buildDSRetrivalSQL($data, &$joins, &$where, $andOperation=false) {
+		public function buildDSRetrievalSQL($data, &$joins, &$where, $andOperation = false) {
 
 			// X to Y support
 			if(preg_match('/^(-?(?:\d+(?:\.\d+)?|\.\d+)) to (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
@@ -156,7 +156,7 @@
 
 			}
 
-			else parent::buildDSRetrivalSQL($data, $joins, $where, $andOperation);
+			else parent::buildDSRetrievalSQL($data, $joins, $where, $andOperation);
 
 			return true;
 		}
