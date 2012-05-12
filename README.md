@@ -1,9 +1,9 @@
 # Number Field
 
-- Version: 1.4.1
+- Version: 1.5.1
 - Author: Symphony Team (team@symphony-cms.com)
-- Release Date: 11th May 2011
-- Requirements: Symphony 2
+- Release Date: 12th May 2012
+- Requirements: Symphony 2.1
 
 ## Overview
 
@@ -40,9 +40,3 @@ You can also use standard greater than or less than symbols in the filter value.
 	> 20
 
 This will return all entries that have a value greater than 20.
-
-## Changelog
-
-- **1.4.1** Slight cleanup for Symphony 2.2
-- **1.4** In the publish area, will no longer get errors when leaving a non-required number field empty.
-- **1.3** Filtering supports ranges via the use of MySQL expressions. To filter by ranges, add `mysql:` to the beginning of the filter input. Use `value` for field name. E.G. `mysql: value >= 1.01 AND value <= {$price}`

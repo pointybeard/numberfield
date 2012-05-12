@@ -5,8 +5,8 @@
 		public function about() {
 			return array(
 				'name' => 'Field: Number',
-				'version' => '1.5',
-				'release-date' => '2011-12-17',
+				'version' => '1.5.1',
+				'release-date' => '2012-05-12',
 				'author' => array(
 				 	'name' => 'Symphony Team',
 					'website' => 'http://www.symphony-cms.com',
