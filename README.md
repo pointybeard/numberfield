@@ -1,9 +1,9 @@
 # Number Field
 
-- Version: 1.6
+- Version: 1.6.1
 - Author: Symphony Team (team@symphony-cms.com)
-- Release Date: 12th May, 2012
-- Requirements: Symphony 2.3
+- Release Date: 25th February, 2013
+- Requirements: Symphony 2.3.2
 
 ## Overview
 
