@@ -17,7 +17,7 @@
 		<release version="1.6.1" date="2013-02-25" min="2.3.2">
 			- Update `ImportableField` support
 			- Add Russian language
-			- Add support for filtering using symbols, `<`, `>`, `<=` and `>=`
+			- Add support for filtering using symbols, &lt;, &gt;, &lt;= and &gt;=
 		</release>
 		<release version="1.6" date="2012-05-12" min="2.3">
 			- Symphony 2.3 compatibility
