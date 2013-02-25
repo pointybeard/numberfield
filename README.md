@@ -35,8 +35,9 @@ This would let you pass through the upper and lower limit as url parameters. E.g
 
 ### Less than or greater than
 
-You can also use standard greater than or less than symbols in the filter value. E.g.
+You can also use standard greater than or less than symbols in the filter value or you can use words. e.g.
 
 	> 20
+	greater than 20
 
 This will return all entries that have a value greater than 20.
