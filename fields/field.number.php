@@ -55,7 +55,7 @@
 		public function displaySettingsPanel(XMLElement &$wrapper, $errors = null) {
 			parent::displaySettingsPanel($wrapper, $errors);
 
-			$div = new XMLElement('div', NULL, array('class' => 'compact'));
+			$div = new XMLElement('div', NULL, array('class' => 'two columns'));
 			$this->appendRequiredCheckbox($div);
 			$this->appendShowColumnCheckbox($div);
 			$wrapper->appendChild($div);
@@ -119,19 +119,25 @@
 		Import:
 	-------------------------------------------------------------------------*/
 
-		/**
-		 * Give the field some data and ask it to return a value.
-		 *
-		 * @param mixed $data
-		 * @param integer $entry_id
-		 * @return array
-		 */
-		public function prepareImportValue($data, $entry_id = null) {
-			if (strlen(trim($data)) == 0) return null;
-
+		public function getImportModes() {
 			return array(
-				'value' =>	$data
+				'getValue' =>		ImportableField::STRING_VALUE,
+				'getPostdata' =>	ImportableField::ARRAY_VALUE
 			);
+		}
+
+		public function prepareImportValue($data, $mode, $entry_id = null) {
+			$message = $status = null;
+			$modes = (object)$this->getImportModes();
+
+			if($mode === $modes->getValue) {
+				return $data;
+			}
+			else if($mode === $modes->getPostdata) {
+				return $this->processRawFieldData($data, $status, $message, true, $entry_id);
+			}
+
+			return null;
 		}
 
 	/*-------------------------------------------------------------------------
@@ -177,11 +183,11 @@
 	-------------------------------------------------------------------------*/
 
 		public function buildDSRetrievalSQL($data, &$joins, &$where, $andOperation = false) {
+			$field_id = $this->get('id');
+			$expression = " `t$field_id`.`value` ";
 
 			// X to Y support
 			if(preg_match('/^(-?(?:\d+(?:\.\d+)?|\.\d+)) to (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
-
-				$field_id = $this->get('id');
 
 				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
 				$where .= " AND `t$field_id`.`value` BETWEEN {$match[1]} AND {$match[2]} ";
@@ -190,9 +196,6 @@
 
 			// Equal to or less/greater than X
 			else if(preg_match('/^(equal to or )?(less|greater) than (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
-				$field_id = $this->get('id');
-
-				$expression = " `t$field_id`.`value` ";
 
 				switch($match[2]) {
 					case 'less':
@@ -212,6 +215,19 @@
 
 				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
 				$where .= " AND $expression ";
+
+			}
+
+			// Look for <=/< or >=/> symbols
+			else if(preg_match('/^(=?[<>]=?) (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
+
+				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
+				$where .= sprintf(
+					" AND %s %s %f",
+					$expression,
+					$match[1],
+					$match[2]
+				);
 
 			}
 
