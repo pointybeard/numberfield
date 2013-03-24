@@ -90,8 +90,8 @@
 		public function checkPostFieldData($data, &$message, $entry_id = null) {
 			$message = NULL;
 
-			if($this->get('required') == 'yes' && strlen($data) == 0) {
-				$message = __('This is a required field.');
+			if($this->get('required') == 'yes' && strlen($data) == 0){
+				$message = __('‘%s’ is a required field.', array($this->get('label')));
 				return self::__MISSING_FIELDS__;
 			}
 
