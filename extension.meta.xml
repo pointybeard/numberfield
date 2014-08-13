@@ -14,7 +14,7 @@
 		</author>
 	</authors>
 	<releases>
-		<release version="1.6.1" date="2013-02-25" min="2.3.2">
+		<release version="1.6.1" date="2013-02-25" min="2.3.2" max="2.4.x">
 			- Update `ImportableField` support
 			- Add Russian language
 			- Add support for filtering using symbols, &lt;, &gt;, &lt;= and &gt;=
