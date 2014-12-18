@@ -61,6 +61,16 @@
 			$wrapper->appendChild($div);
 		}
 
+		public function commit() {
+			if (!parent::commit()) return false;
+
+			$id = $this->get('id');
+
+			if ($id === false) return false;
+
+			return FieldManager::saveSettings($id, $fields);
+		}
+
 	/*-------------------------------------------------------------------------
 		Input:
 	-------------------------------------------------------------------------*/
