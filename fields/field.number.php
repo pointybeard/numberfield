@@ -161,7 +161,7 @@
 		 */
 		public function getExportModes() {
 			return array(
-				'getUnformatted' =>	ExportableField::UNFORMATTED,
+				'getUnformatted' => ExportableField::UNFORMATTED,
 				'getPostdata' =>	ExportableField::POSTDATA
 			);
 		}
@@ -192,6 +192,52 @@
 		Filtering:
 	-------------------------------------------------------------------------*/
 
+		/**
+		 * Returns the keywords that this field supports for filtering. Note
+		 * that no filter will do a simple 'straight' match on the value.
+		 *
+		 * @since Symphony 2.6.0
+		 * @return array
+		 */
+		public function fetchFilterableOperators()
+		{
+			return array(
+				array(
+					'title' 			=> 'is',
+					'filter' 			=> ' ',
+					'help' 				=> __('Find values that are an exact match for the given number.')
+				),
+				array(
+					'title'				=> 'less than',
+					'filter'			=> 'less than ',
+					'help'				=> __('Less than %s', array('<code>$x</code>'))
+				),
+				array(
+					'title'				=> 'equal to or less than',
+					'filter'			=> 'equal to or less than ',
+					'help'				=> __('Equal to or less than %s', array('<code>$x</code>'))
+				),
+				array(
+					'title'				=> 'greater than',
+					'filter'			=> 'greater than ',
+					'help'				=> __('Greater than %s', array('<code>$x</code>'))
+				),
+				array(
+					'title'				=> 'equal to or greater than',
+					'filter'			=> 'equal to or greater than ',
+					'help'				=> __('Equal to or greater than %s', array('<code>$x</code>'))
+				),
+				array(
+					'title'				=> 'between',
+					'filter'			=> 'x to y',
+					'help'				=> __('Find values between two values with, %s to %s', array(
+						'<code>$x</code>',
+						'<code>$y</code>'
+					))
+				),
+			);
+		}
+
 		public function buildDSRetrievalSQL($data, &$joins, &$where, $andOperation = false) {
 			$field_id = $this->get('id');
 			$expression = " `t$field_id`.`value` ";
@@ -205,7 +251,7 @@
 			}
 
 			// Equal to or less/greater than X
-			else if(preg_match('/^(equal to or )?(less|greater) than (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
+			else if(preg_match('/^(equal to or )?(less|greater) than\s*(-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
 
 				switch($match[2]) {
 					case 'less':
@@ -229,7 +275,7 @@
 			}
 
 			// Look for <=/< or >=/> symbols
-			else if(preg_match('/^(=?[<>]=?) (-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
+			else if(preg_match('/^(=?[<>]=?)\s*(-?(?:\d+(?:\.\d+)?|\.\d+))$/i', $data[0], $match)) {
 
 				$joins .= " LEFT JOIN `tbl_entries_data_$field_id` AS `t$field_id` ON (`e`.`id` = `t$field_id`.entry_id) ";
 				$where .= sprintf(

@@ -1,12 +1,5 @@
 # Number Field
 
-- Version: 1.6.1
-- Author: Symphony Team (team@symphony-cms.com)
-- Release Date: 25th February, 2013
-- Requirements: Symphony 2.3.2
-
-## Overview
-
 Input field that provides built-in number validation and numeric sorting.
 
 ## Installation

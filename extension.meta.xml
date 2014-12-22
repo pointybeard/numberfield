@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="numberfield" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+<extension id="numberfield" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
 	<name>Number Field</name>
 	<description>Dedicated number storage</description>
 	<repo type="github">https://github.com/symphonycms/numberfield</repo>
-	<url type="discuss">http://symphony-cms.com/discuss/thread/144/</url>
+	<url type="discuss">http://getsymphony.com/discuss/thread/144/</url>
 	<types>
 		<type>Field Types</type>
 	</types>
 	<authors>
 		<author>
 			<name github="symphonycms" symphony="team">Symphony Team</name>
-			<website>http://symphony-cms.com</website>
+			<website>http://getsymphony.com</website>
 		</author>
 	</authors>
 	<releases>
+		<release version="1.7" date="2014-12-22" min="2.5">
+			- Support Symphony 2.5+
+		</release>
 		<release version="1.6.1" date="2013-02-25" min="2.3.2" max="2.4.x">
 			- Update `ImportableField` support
 			- Add Russian language
