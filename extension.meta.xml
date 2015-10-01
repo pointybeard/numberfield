@@ -14,6 +14,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="1.7.1" date="2015-10-01" min="2.5">
+			- Support Symphony 2.5+
+		</release>
 		<release version="1.7" date="2014-12-22" min="2.5">
 			- Support Symphony 2.5+
 		</release>
