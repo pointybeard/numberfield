@@ -14,10 +14,10 @@
 		</author>
 	</authors>
 	<releases>
-		<release version="1.7.1" date="2015-10-01" min="2.5">
-			- Support Symphony 2.5+
+		<release version="1.7.1" date="2016-01-05" min="2.5" max="2.6.x">
+			- Set 'entry_id' as unique
 		</release>
-		<release version="1.7" date="2014-12-22" min="2.5">
+		<release version="1.7" date="2014-12-22" min="2.5" max="2.6.x">
 			- Support Symphony 2.5+
 		</release>
 		<release version="1.6.1" date="2013-02-25" min="2.3.2" max="2.4.x">
