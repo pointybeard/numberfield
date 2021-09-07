@@ -1,8 +1,5 @@
 <?php
 
-	require_once FACE . '/interface.exportablefield.php';
-	require_once FACE . '/interface.importablefield.php';
-
 	class FieldNumber extends Field implements ExportableField, ImportableField {
 		public function __construct() {
 			parent::__construct();
